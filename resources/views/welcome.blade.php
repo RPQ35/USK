@@ -4,7 +4,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-12" x-data="{ itemlist: [], differ: false }">
+    <div class="py-12  relative" x-data="{ itemlist: [], differ: false }"  >
+        <div id="blocker" class="bg-stone-100/10 w-full h-full absolute top-0 right-0 " x-show="{{ Auth::user()?'true':'false' }}"></div>
         <form method="POST" action="{{ route('store') }}"
             class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-3 grid-rows-1 gap-x-2 min-h-screen">
             @csrf @method('POST')

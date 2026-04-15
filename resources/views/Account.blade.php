@@ -16,7 +16,7 @@
                             <div class="flex flex-row justify-between mb-6">
                                 <div class="relative">
                                     <input type="text" x-model="search" @input="currentPage = 1"
-                                        placeholder="Search by Product name"
+                                        placeholder="Search by name / email / role"
                                         class="w-80 p-2 pl-10 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none">
                                     <i class="fa fa-search absolute left-3 top-3 text-slate-400"></i>
                                 </div>

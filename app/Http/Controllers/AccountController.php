@@ -19,8 +19,9 @@ class AccountController extends Controller
 
     public function index()
     {
-        if (Auth::user()->role != 'admin') {
-            route('dashboard');
+        // dd(Auth::user()->role);
+        if (Auth::user()->role == 'worker') {
+            return redirect()->route('dashboard');
         }
         //
         $data = User::all();
@@ -51,7 +52,7 @@ class AccountController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->string('password')),
-            'role' => $request->role,
+            'role' => $request->input('role'),
         ]);
 
         event(new Registered($user));

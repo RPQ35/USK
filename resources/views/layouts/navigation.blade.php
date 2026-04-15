@@ -1,4 +1,4 @@
-<nav  class="bg-white border-b border-gray-100" x-data="{ login: {{ Auth::user() ? 'true' : 'false' }},open: false }">
+<nav class="bg-white border-b border-gray-100" x-data="{ login: {{ Auth::user() ? 'true' : 'false' }}, open: false }">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" x-show="login">
         <div class="flex justify-between h-16">
@@ -18,9 +18,11 @@
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
                         Product
                     </x-nav-link>
-                    <x-nav-link :href="route('account.index')" :active="request()->routeIs('account.index')">
-                        Account
-                    </x-nav-link>
+                    <template x-if="{{ Auth::user() ? (Auth::user()->role == 'admin' ? 'true' : 'false') : '' }}">
+                        <x-nav-link :href="route('account.index')" :active="request()->routeIs('account.index')">
+                            Account
+                        </x-nav-link>
+                    </template>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         Review POS
                     </x-nav-link>
@@ -123,7 +125,8 @@
         </div>
     </div>
 
-    <a href="{{ route('login') }}" class="border w-18 h-12 text-center p-2 float-end text-xl font-bold hover:text-blue-500" x-show="!login">
+    <a href="{{ route('login') }}"
+        class="border w-18 h-12 text-center p-2 float-end text-xl font-bold hover:text-blue-500" x-show="!login">
         Login
     </a>
 
